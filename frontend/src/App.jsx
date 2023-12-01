@@ -3,17 +3,36 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { theme } from './themeOptions';
 import { ThemeProvider } from '@mui/material';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import Header from './components/common/header/Header';
+import Footer from './components/common/footer/Footer';
+import { NavPathes } from './utils/navpathes';
+import Main from './components/main/Main';
+import LogIn from './components/authorization/log-in/LogIn';
+import Registration from './components/authorization/registration/Registration';
 
 function App() {
   return (
     <BrowserRouter>
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={theme}>
-          <Header />
-          <main></main>
-        </ThemeProvider>
-      </StyledEngineProvider>
+      <Provider store={store}>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <Header />
+            <main>
+              <Routes>
+                <Route path={NavPathes.MAIN()} element={<Main />} />
+                <Route path={NavPathes.LOG_IN()} element={<LogIn />} />
+                <Route
+                  path={NavPathes.REGISTRATION()}
+                  element={<Registration />}
+                />
+              </Routes>
+            </main>
+            <Footer />
+          </ThemeProvider>
+        </StyledEngineProvider>
+      </Provider>
     </BrowserRouter>
   );
 }
