@@ -10,17 +10,17 @@ namespace SightCraft.DataAccessLayer.Repositories.SightRepositories
         {
         }
 
-        public Task<Sight?> GetSightByTitle(string title)
+        public Task<Sight?> GetSightByTitleAsync(string title)
         {
             return DbSet.AsNoTracking().FirstOrDefaultAsync(_ => _.Title == title);
         }
 
-        public Task<Sight?> GetSightByFoundingDate(DateOnly foundingDate)
+        public Task<Sight?> GetSightByFoundingDateAsync(DateOnly foundingDate)
         {
             return DbSet.AsNoTracking().FirstOrDefaultAsync(_ => _.FoundingDate == foundingDate);
         }
 
-        public Task<List<Sight>> GetSightsByUserId(Guid userId)
+        public Task<List<Sight>> GetSightsByUserIdAsync(Guid userId)
         {
             return DbSet.AsNoTracking().Where(_ => _.UserId == userId).ToListAsync();
         }

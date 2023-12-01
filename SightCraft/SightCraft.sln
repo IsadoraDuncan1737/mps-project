@@ -5,6 +5,10 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SightCraft.WebAPI", "SightCraft.WebAPI\SightCraft.WebAPI.csproj", "{67DB5532-3666-4970-9264-0BE89923EC82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SightCraft.DataAccessLayer", "SightCraft.DataAccessLayer\SightCraft.DataAccessLayer.csproj", "{95217455-94F7-446D-8D30-A27218F5F7C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SightCraft.Migrations", "SightCraft.Migrations\SightCraft.Migrations.csproj", "{0D1A7799-9A9F-4AD4-84B4-4984E5290F64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{67DB5532-3666-4970-9264-0BE89923EC82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67DB5532-3666-4970-9264-0BE89923EC82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67DB5532-3666-4970-9264-0BE89923EC82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95217455-94F7-446D-8D30-A27218F5F7C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95217455-94F7-446D-8D30-A27218F5F7C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95217455-94F7-446D-8D30-A27218F5F7C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95217455-94F7-446D-8D30-A27218F5F7C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D1A7799-9A9F-4AD4-84B4-4984E5290F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D1A7799-9A9F-4AD4-84B4-4984E5290F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D1A7799-9A9F-4AD4-84B4-4984E5290F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D1A7799-9A9F-4AD4-84B4-4984E5290F64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
