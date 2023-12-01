@@ -4,17 +4,11 @@ const themeOptions = {
   palette: {
     mode: "light",
     primary: {
-      main: "#739072",
+      main: "#ffaf6a",
     },
     secondary: {
-      main: "#ECE3CE" ,
-    },
-    error: {
-      main: "#FF3F3F",
-    },
-    success: {
-      main: "#00AC1C",
-    },
+      main: "#FFD9B7" ,
+    }
   },
   components: {
     MuiTypography: {
@@ -50,6 +44,7 @@ const themeOptions = {
     MuiButton: {
       styleOverrides: {
         root: {
+          fontFamily: "Jost",
           borderRadius: "0",
         },
       },

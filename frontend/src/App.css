@@ -5,5 +5,8 @@
 a {
   text-decoration: none;
   cursor: pointer;
-  color: #fff;
+  color: #7eaa92;
+}
+a:hover {
+  color: #ffaf6a;
 }
