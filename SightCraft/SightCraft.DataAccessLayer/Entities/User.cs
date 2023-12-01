@@ -15,6 +15,6 @@ namespace SightCraft.DataAccessLayer.Entities
         public string AboutSelf { get; set; } = null!;
         public DateTime? RegistrationDate { get; set; }
 
-        public HashSet<Sight> AddedSights { get; set; }
+        public virtual ICollection<Sight> AddedSights { get; set; }
     }
 }
