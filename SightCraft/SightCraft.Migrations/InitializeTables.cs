@@ -17,7 +17,9 @@ namespace SightCraft.Migrations
                 .WithColumn("Title").AsString(50).NotNullable()
                 .WithColumn("FoundingDate").AsDate().NotNullable()
                 .WithColumn("Type").AsString(20).NotNullable()
+                .WithColumn("Location").AsString(50).NotNullable()
                 .WithColumn("History").AsString(1500).NotNullable()
+                .WithColumn("ImageUrl").AsString(int.MaxValue).NotNullable()
                 .WithColumn("UserId").AsGuid().NotNullable().ForeignKey();
 
             Create.ForeignKey("FK_Sight_User")
