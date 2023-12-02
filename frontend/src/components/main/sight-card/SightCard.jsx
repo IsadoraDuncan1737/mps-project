@@ -7,10 +7,20 @@ import {
 } from '@mui/material';
 import styles from '../Main.module.css';
 
-const SightCard = ({ id, title, image, summary, date, type, userId, location}) => {
+const SightCard = ({
+  id,
+  title,
+  image,
+  summary,
+  date,
+  type,
+  userId,
+  location,
+  onClick,
+}) => {
   return (
     <Grid item xs={4}>
-      <CardActionArea>
+      <CardActionArea onClick={() => onClick(id)}>
         <Card
           className={styles.card}
           style={{
@@ -23,10 +33,10 @@ const SightCard = ({ id, title, image, summary, date, type, userId, location}) =
         >
           <CardContent className={styles.content}>
             <Typography className={styles.title}>{title}</Typography>
-            <Typography className={styles.type}>Тип: {type}</Typography>
-            <Typography className={styles.location}>Расположение: {location}</Typography>
-            <Typography className={styles.summary}>Описание: {summary}</Typography>
-            <Typography className={styles.date}>Дата основания: {date}</Typography>
+            <Typography>Тип: {type}</Typography>
+            <Typography>Расположение: {location}</Typography>
+            <Typography>Описание: {summary}</Typography>
+            <Typography>Дата основания: {date}</Typography>
           </CardContent>
         </Card>
       </CardActionArea>
