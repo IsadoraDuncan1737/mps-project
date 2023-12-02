@@ -9,9 +9,10 @@ import {
 } from '@mui/material';
 import styles from '../Authorization.module.css';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { registration } from '../authorizationSlice';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { NavPathes } from '../../../utils/navpathes';
+import { Endpoints } from '../../../utils/endpoints';
 
 const Registration = () => {
   let navigate = useNavigate();
@@ -21,10 +22,35 @@ const Registration = () => {
     getValues,
     formState: { errors },
   } = useForm();
-  const dispatch = useDispatch();
 
-  function onSubmit(value) {
-    dispatch(registration({ value, navigate }));
+  async function onSubmit(value) {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    const userData = {
+      Login: value.login,
+      Password: value.password,
+      RegistrationDate: formattedDate,
+      AboutSelf: value.desc,
+    };
+    console.log(userData);
+
+    axios
+      .post(Endpoints.USER_REGISTRATION(), userData)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          alert('Успешная регистрация');
+          navigate(NavPathes.MAIN_PAGE());
+        } else {
+          alert('Ошибка');
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
 
   return (

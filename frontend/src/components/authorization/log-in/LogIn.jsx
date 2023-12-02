@@ -9,25 +9,33 @@ import {
 } from '@mui/material';
 import styles from '../Authorization.module.css';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { login, selectors } from '../authorizationSlice';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { NavPathes } from '../../../utils/navpathes';
+import { Endpoints } from '../../../utils/endpoints';
 
 const LogIn = () => {
   let navigate = useNavigate();
-  // const error = useSelector(selectors.selectError());
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const dispatch = useDispatch();
 
-  function onSubmit(value) {
-    dispatch(login({ value, navigate }));
-    // if (!!error) {
-    //   return <Typography>Некорректные данные</Typography>;
-    // }
+  async function onSubmit(value) {
+    const userData = {
+      Login: value.login,
+      Password: value.password,
+    };
+
+    axios
+      .post(Endpoints.USER_LOGIN(), userData)
+      .then((res) => {
+        console.log(res);
+        sessionStorage.setItem('token', res.data.token);
+        navigate(NavPathes.MAIN_PAGE());
+      })
+      .catch((e) => <Typography>Ошибка: {e}</Typography>);
   }
 
   return (
