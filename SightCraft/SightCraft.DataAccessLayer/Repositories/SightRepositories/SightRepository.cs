@@ -24,5 +24,10 @@ namespace SightCraft.DataAccessLayer.Repositories.SightRepositories
         {
             return DbSet.AsNoTracking().Where(_ => _.UserId == userId).ToListAsync();
         }
+
+        public Task<List<Sight>> GetSightsByLocationAsync(string location)
+        {
+            return DbSet.AsNoTracking().Where(_ => _.Location.Contains(location)).ToListAsync();
+        }
     }
 }
