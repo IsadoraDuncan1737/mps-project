@@ -2,8 +2,16 @@ import { Box, Grid, Typography } from '@mui/material';
 import styles from './Main.module.css';
 import { sights } from './data/sights';
 import SightCard from './sight-card/SightCard';
+import { useNavigate } from 'react-router-dom';
+import { NavPathes } from '../../utils/navpathes';
 
 const Main = () => {
+  let navigate = useNavigate();
+
+  function handleOnClick(id) {
+    navigate(`${NavPathes.SIGHTS()}/${id}`);
+  }
+
   return (
     <Box className={styles.wrapper}>
       <Typography className={styles.page_title}>
@@ -22,6 +30,7 @@ const Main = () => {
             date={item.FoundingDate}
             type={item.Type}
             userId={item.UserID}
+            onClick={(id)=>handleOnClick(id)}
           />
         ))}
       </Grid>

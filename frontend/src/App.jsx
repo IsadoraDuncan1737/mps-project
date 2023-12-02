@@ -11,6 +11,7 @@ import { NavPathes } from './utils/navpathes';
 import Main from './components/main/Main';
 import LogIn from './components/authorization/log-in/LogIn';
 import Registration from './components/authorization/registration/Registration';
+import SightDetailed from './components/sight-detailed/SightDetailed';
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
                 <Route
                   path={NavPathes.REGISTRATION()}
                   element={<Registration />}
+                />
+                <Route
+                  path={`${NavPathes.SIGHTS()}/:id`}
+                  element={<SightDetailed />}
                 />
               </Routes>
             </main>
