@@ -33,7 +33,6 @@ const Registration = () => {
       Login: value.login,
       Password: value.password,
       RegistrationDate: formattedDate,
-      AboutSelf: value.desc,
     };
     console.log(userData);
 
@@ -103,17 +102,6 @@ const Registration = () => {
             {errors.repeat_password && (
               <FormHelperText error>{'Пароли не совпадают'}</FormHelperText>
             )}
-          </FormControl>
-          <FormControl className={styles.form_control}>
-            <Input
-              placeholder="Расскажите немного о себе "
-              type="text"
-              multiline={true}
-              maxRows={5}
-              className={styles.input}
-              inputProps={{ maxLength: 220 }}
-              {...register('desc', { required: true })}
-            ></Input>
           </FormControl>
           <Box className={styles.button_wrapper}>
             <Button variant="outlined" type="submit">
