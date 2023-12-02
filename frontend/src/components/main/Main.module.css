@@ -23,8 +23,12 @@
   display: flex;
   align-items: center;
 }
+
+.card:hover {
+  box-shadow: #7eaa92 10px 10px;
+}
 .content {
-    width: 100%;
+  width: 100%;
   padding: 0% 8%;
   color: #fff;
 }

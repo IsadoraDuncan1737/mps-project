@@ -1,13 +1,15 @@
-.content{
-    background-color: #7EAA92;
-    padding: 3%;
-    color: #fff;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 3%;
+.content {
+  background-color: #7eaa92;
+  padding: 3%;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 3%;
 }
-.link{
-    color: #fff;
-
+.content > p {
+  font-size: 0.8rem;
+}
+.link {
+  color: #fff;
 }
