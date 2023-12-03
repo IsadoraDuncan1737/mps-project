@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SightCraft.DataAccessLayer"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SightCraft.Migrations", "SightCraft.Migrations\SightCraft.Migrations.csproj", "{0D1A7799-9A9F-4AD4-84B4-4984E5290F64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SightCraft.BusinessLogicLayer", "SightCraft.BusinessLogicLayer\SightCraft.BusinessLogicLayer.csproj", "{72F5F370-59D9-4194-B7D6-587ACD893067}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SightCraft.BusinessLogicLayer", "SightCraft.BusinessLogicLayer\SightCraft.BusinessLogicLayer.csproj", "{72F5F370-59D9-4194-B7D6-587ACD893067}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SightCraft.Domain", "SightCraft.Domain\SightCraft.Domain.csproj", "{CB9AC91E-0B19-42FE-B04E-6507297D808D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{72F5F370-59D9-4194-B7D6-587ACD893067}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72F5F370-59D9-4194-B7D6-587ACD893067}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72F5F370-59D9-4194-B7D6-587ACD893067}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB9AC91E-0B19-42FE-B04E-6507297D808D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB9AC91E-0B19-42FE-B04E-6507297D808D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB9AC91E-0B19-42FE-B04E-6507297D808D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB9AC91E-0B19-42FE-B04E-6507297D808D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
