@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SightCraft.DataAccessLayer.Entities
+namespace SightCraft.Domain.Entities.DataAccessLayer
 {
     [Table(nameof(User))]
     public class User : BaseEntity
@@ -12,7 +12,6 @@ namespace SightCraft.DataAccessLayer.Entities
 
         public string Login { get; set; } = null!;
         public string PasswordHash { get; set; } = null!;
-        public string AboutSelf { get; set; } = null!;
         public DateTime? RegistrationDate { get; set; }
 
         public virtual ICollection<Sight> AddedSights { get; set; }

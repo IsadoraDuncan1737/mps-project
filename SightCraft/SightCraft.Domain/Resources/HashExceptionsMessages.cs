@@ -1,4 +1,4 @@
-﻿namespace SightCraft.BusinessLogicLayer.Resources
+﻿namespace SightCraft.Domain.Resources
 {
     public static class HashExceptionsMessages
     {

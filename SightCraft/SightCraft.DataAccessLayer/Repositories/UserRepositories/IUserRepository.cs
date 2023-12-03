@@ -1,4 +1,4 @@
-﻿using SightCraft.DataAccessLayer.Entities;
+﻿using SightCraft.Domain.Entities.DataAccessLayer;
 
 namespace SightCraft.DataAccessLayer.Repositories.UserRepositories
 {

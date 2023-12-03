@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SightCraft.DataAccessLayer.DataAccess;
-using SightCraft.DataAccessLayer.Entities;
+using SightCraft.Domain.Entities.DataAccessLayer;
 
 namespace SightCraft.DataAccessLayer.Repositories.UserRepositories
 {

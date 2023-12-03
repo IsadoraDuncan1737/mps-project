@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SightCraft.DataAccessLayer\SightCraft.DataAccessLayer.csproj" />
-    <ProjectReference Include="..\SightCraft.WebAPI\SightCraft.WebAPI.csproj" />
   </ItemGroup>
 
 </Project>

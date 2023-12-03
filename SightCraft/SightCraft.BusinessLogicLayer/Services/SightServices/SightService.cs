@@ -1,10 +1,10 @@
 ﻿using Mapster;
-using SightCraft.BusinessLogicLayer.Entities;
-using SightCraft.BusinessLogicLayer.Exceptions;
-using SightCraft.BusinessLogicLayer.Resources;
-using SightCraft.DataAccessLayer.Entities;
 using SightCraft.DataAccessLayer.Repositories.SightRepositories;
-using SightCraft.WebAPI.Entities.SightRequests;
+using SightCraft.Domain.Entities.BusinessLogicLayer;
+using SightCraft.Domain.Entities.DataAccessLayer;
+using SightCraft.Domain.Entities.WebAPI.SightRequests;
+using SightCraft.Domain.Exceptions;
+using SightCraft.Domain.Resources;
 
 namespace SightCraft.BusinessLogicLayer.Services.SightServices
 {

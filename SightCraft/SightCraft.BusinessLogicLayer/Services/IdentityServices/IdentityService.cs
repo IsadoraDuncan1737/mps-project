@@ -1,12 +1,12 @@
 ﻿using Mapster;
 using Microsoft.IdentityModel.Tokens;
-using SightCraft.BusinessLogicLayer.Entities;
 using SightCraft.BusinessLogicLayer.Extensions;
-using SightCraft.BusinessLogicLayer.Resources;
-using SightCraft.BusinessLogicLayer.Settings;
-using SightCraft.DataAccessLayer.Entities;
 using SightCraft.DataAccessLayer.Repositories.UserRepositories;
-using SightCraft.WebAPI.Entities.IdentityRequests;
+using SightCraft.Domain.Entities.BusinessLogicLayer;
+using SightCraft.Domain.Entities.DataAccessLayer;
+using SightCraft.Domain.Entities.WebAPI.IdentityRequests;
+using SightCraft.Domain.Resources;
+using SightCraft.Domain.Settings;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

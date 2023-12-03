@@ -1,5 +1,5 @@
-﻿using SightCraft.BusinessLogicLayer.Entities;
-using SightCraft.WebAPI.Entities.IdentityRequests;
+﻿using SightCraft.Domain.Entities.BusinessLogicLayer;
+using SightCraft.Domain.Entities.WebAPI.IdentityRequests;
 
 namespace SightCraft.BusinessLogicLayer.Services.IdentityServices
 {

@@ -1,6 +1,6 @@
-﻿namespace SightCraft.BusinessLogicLayer.Entities
+﻿namespace SightCraft.Domain.Entities.WebAPI.SightRequests
 {
-    public class SightDto
+    public class UpdateSightRequest
     {
         public Guid Id { get; set; }
         public string Title { get; set; } = null!;

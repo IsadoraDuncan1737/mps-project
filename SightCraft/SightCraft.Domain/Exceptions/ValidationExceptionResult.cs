@@ -1,4 +1,4 @@
-﻿namespace SightCraft.BusinessLogicLayer.Exceptions
+﻿namespace SightCraft.Domain.Exceptions
 {
     public class ValidationExceptionResult : Exception
     {

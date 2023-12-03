@@ -1,5 +1,4 @@
-﻿using SightCraft.BusinessLogicLayer.Entities;
-using SightCraft.WebAPI.Entities.UserRequests;
+﻿using SightCraft.Domain.Entities.BusinessLogicLayer;
 
 namespace SightCraft.BusinessLogicLayer.Services.UserServices
 {

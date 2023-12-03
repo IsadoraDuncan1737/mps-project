@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SightCraft.DataAccessLayer.Entities;
+using SightCraft.Domain.Entities.DataAccessLayer;
 
 namespace SightCraft.DataAccessLayer.DataAccess
 {

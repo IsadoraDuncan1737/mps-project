@@ -1,4 +1,4 @@
-﻿using SightCraft.DataAccessLayer.Entities;
+﻿using SightCraft.Domain.Entities.DataAccessLayer;
 using System.Linq.Expressions;
 
 namespace SightCraft.DataAccessLayer.Repositories

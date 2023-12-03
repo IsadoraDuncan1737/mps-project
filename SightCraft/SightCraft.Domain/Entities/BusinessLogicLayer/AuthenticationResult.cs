@@ -1,4 +1,4 @@
-﻿namespace SightCraft.BusinessLogicLayer.Entities
+﻿namespace SightCraft.Domain.Entities.BusinessLogicLayer
 {
     public class AuthenticationResult
     {

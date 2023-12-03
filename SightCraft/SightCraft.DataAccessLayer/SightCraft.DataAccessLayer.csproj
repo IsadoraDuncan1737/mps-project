@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SightCraft.Domain\SightCraft.Domain.csproj" />
     <ProjectReference Include="..\SightCraft.Migrations\SightCraft.Migrations.csproj" />
   </ItemGroup>
 

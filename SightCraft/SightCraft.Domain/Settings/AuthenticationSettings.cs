@@ -1,4 +1,4 @@
-﻿namespace SightCraft.BusinessLogicLayer.Settings
+﻿namespace SightCraft.Domain.Settings
 {
     public class AuthenticationSettings
     {

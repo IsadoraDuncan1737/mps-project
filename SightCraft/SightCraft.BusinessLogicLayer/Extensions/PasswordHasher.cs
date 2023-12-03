@@ -1,4 +1,4 @@
-﻿using SightCraft.BusinessLogicLayer.Resources;
+﻿using SightCraft.Domain.Resources;
 using System.Security.Cryptography;
 using System.Text;
 

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace SightCraft.DataAccessLayer.Entities
+namespace SightCraft.Domain.Entities.DataAccessLayer
 {
     public abstract class BaseEntity
     {

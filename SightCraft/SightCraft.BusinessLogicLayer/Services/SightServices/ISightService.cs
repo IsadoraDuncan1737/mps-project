@@ -1,5 +1,5 @@
-﻿using SightCraft.BusinessLogicLayer.Entities;
-using SightCraft.WebAPI.Entities.SightRequests;
+﻿using SightCraft.Domain.Entities.BusinessLogicLayer;
+using SightCraft.Domain.Entities.WebAPI.SightRequests;
 
 namespace SightCraft.BusinessLogicLayer.Services.SightServices
 {
