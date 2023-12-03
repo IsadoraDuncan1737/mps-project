@@ -6,7 +6,6 @@ namespace SightCraft.BusinessLogicLayer.Services.UserServices
     {
         Task<UserDto?> GetByIdAsync(Guid id);
         Task<List<UserDto>> GetAllAsync();
-        Task<bool> UpdateAsync(UpdateUserRequest request);
         Task<bool> DeleteAsync(Guid id);
     }
 }

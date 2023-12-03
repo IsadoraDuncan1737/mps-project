@@ -31,22 +31,6 @@ namespace SightCraft.BusinessLogicLayer.Services.UserServices
             return mappedUsers;
         }
 
-        public async Task<bool> UpdateAsync(UpdateUserRequest request)
-        {
-            var userEntity = await _userRepository.GetByIdAsync(request.Id);
-
-            if (userEntity is null)
-            {
-                return false;
-            }
-
-            request.Adapt(userEntity);
-
-            await _userRepository.UpdateAsync(userEntity);
-
-            return true;
-        }
-
         public async Task<bool> DeleteAsync(Guid id)
         {
             var userEntity = await _userRepository.GetByIdAsync(id);

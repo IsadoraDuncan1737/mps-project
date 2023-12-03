@@ -10,7 +10,6 @@ namespace SightCraft.Migrations
                 .WithColumn("Id").AsGuid().NotNullable().PrimaryKey()
                 .WithColumn("Login").AsString(40).NotNullable()
                 .WithColumn("PasswordHash").AsString(100).NotNullable()
-                .WithColumn("AboutSelf").AsString(220).NotNullable();
 
             Create.Table("Sight")
                 .WithColumn("Id").AsGuid().NotNullable().PrimaryKey()

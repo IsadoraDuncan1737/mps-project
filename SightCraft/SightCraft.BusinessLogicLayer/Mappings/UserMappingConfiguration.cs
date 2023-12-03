@@ -14,10 +14,6 @@ namespace SightCraft.BusinessLogicLayer.Mappings
             config.NewConfig<RegisterRequest, User>()
                 .Ignore(_ => _.Id)
                 .Ignore(_ => _.PasswordHash);
-
-            config.NewConfig<UpdateUserRequest, User>()
-                .Ignore(_ => _.Login)
-                .Ignore(_ => _.PasswordHash);
         }
     }
 }
