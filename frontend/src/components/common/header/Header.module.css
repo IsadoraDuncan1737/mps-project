@@ -1,0 +1,39 @@
+.appbar {
+  padding: 1% 3%;
+  box-shadow: none;
+  background-color: transparent;
+  color: #7EAA92;
+  position: static;
+}
+.title {
+  font-weight: 600;
+  font-size: 2rem;
+}
+.container {
+  align-items: center;
+  margin-bottom: 1%;
+}
+.links {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.2rem;
+}
+
+.auth_links {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.2rem;
+}
+.auth_links > a {
+  margin-left: 6.5%;
+}
+.line {
+  border-width: 1.5px;
+
+  border-color: #a3c1b1;
+  /* height:2rem;
+    width: 100%;
+  border-bottom: 1px solid transparent;
+  background-image:  linear-gradient(#fff, #7eaa92,#fff);
+  background-size: 1px 100%; */
+}

@@ -1,0 +1,12 @@
+* {
+  transition: all 0.3s;
+  font-family: 'Jost', sans-serif;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #7eaa92;
+}
+a:hover {
+  color: #ffaf6a;
+}
