@@ -11,8 +11,6 @@
     <SpaProxyServerUrl>https://localhost:44411</SpaProxyServerUrl>
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>08030598-16bf-4ae1-9409-afa92a12d699</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>

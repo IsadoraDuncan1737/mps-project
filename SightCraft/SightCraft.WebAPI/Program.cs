@@ -29,8 +29,15 @@ if (app.Environment.IsDevelopment())
     var runner = services.GetRequiredService<IMigrationRunner>();
     runner.MigrateUp();
 }
+else
+{
+    app.UseHsts();
+}
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
 app.UseCors(x => x
                 .AllowAnyMethod()
                 .AllowAnyHeader()
@@ -39,9 +46,6 @@ app.UseCors(x => x
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseStaticFiles();
-app.UseRouting();
 
 app.MapControllerRoute(
     name: "default",
