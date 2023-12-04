@@ -7,8 +7,8 @@ namespace SightCraft.BusinessLogicLayer.Services.SightServices
     {
         Task<List<SightDto>> GetAllAsync();
         Task<SightDto?> GetSightByIdAsync(Guid id);
-        Task<SightDto?> GetSightByTitleAsync(string title);
-        Task<SightDto?> GetSightByFoundingDateAsync(DateOnly foundingDate);
+        Task<List<SightDto>> GetSightsByTitleAsync(string title);
+        Task<List<SightDto>> GetSightsByFoundingDateAsync(DateTime foundingDate);
         Task<List<SightDto>> GetSightsByUserIdAsync(Guid userId);
         Task<List<SightDto>> GetSightsByLocationAsync(string location);
         Task<SightDto?> CreateAsync(CreateSightRequest createSightRequest);

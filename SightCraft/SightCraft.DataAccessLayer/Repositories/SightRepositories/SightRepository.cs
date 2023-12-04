@@ -10,14 +10,14 @@ namespace SightCraft.DataAccessLayer.Repositories.SightRepositories
         {
         }
 
-        public Task<Sight?> GetSightByTitleAsync(string title)
+        public Task<List<Sight>> GetSightsByTitleAsync(string title)
         {
-            return DbSet.AsNoTracking().FirstOrDefaultAsync(_ => _.Title == title);
+            return DbSet.AsNoTracking().Where(_ => _.Title.ToLower().Contains(title.ToLower())).ToListAsync();
         }
 
-        public Task<Sight?> GetSightByFoundingDateAsync(DateOnly foundingDate)
+        public Task<List<Sight>> GetSightsByFoundingDateAsync(DateTime foundingDate)
         {
-            return DbSet.AsNoTracking().FirstOrDefaultAsync(_ => _.FoundingDate == foundingDate);
+            return DbSet.AsNoTracking().Where(_ => _.FoundingDate == foundingDate).ToListAsync();
         }
 
         public Task<List<Sight>> GetSightsByUserIdAsync(Guid userId)
@@ -27,7 +27,7 @@ namespace SightCraft.DataAccessLayer.Repositories.SightRepositories
 
         public Task<List<Sight>> GetSightsByLocationAsync(string location)
         {
-            return DbSet.AsNoTracking().Where(_ => _.Location.Contains(location)).ToListAsync();
+            return DbSet.AsNoTracking().Where(_ => _.Location.ToLower().Contains(location.ToLower())).ToListAsync();
         }
     }
 }

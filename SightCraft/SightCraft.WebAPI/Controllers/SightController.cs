@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SightCraft.BusinessLogicLayer.Services.SightServices;
 using SightCraft.Domain.Entities.BusinessLogicLayer;
-using SightCraft.Domain.Entities.DataAccessLayer;
 using SightCraft.Domain.Entities.WebAPI.SightRequests;
 
 namespace SightCraft.WebAPI.Controllers
@@ -48,9 +47,9 @@ namespace SightCraft.WebAPI.Controllers
 
         [AllowAnonymous]
         [HttpGet("by-title/{title}")]
-        public async Task<ActionResult<SightDto?>> GetSightByTitleAsync([FromRoute] string title)
+        public async Task<ActionResult<List<SightDto>>> GetSightsByTitleAsync([FromRoute] string title)
         {
-            var sight = await _sightService.GetSightByTitleAsync(title);
+            var sight = await _sightService.GetSightsByTitleAsync(title);
 
             if (sight is null)
             {
@@ -62,9 +61,9 @@ namespace SightCraft.WebAPI.Controllers
 
         [AllowAnonymous]
         [HttpGet("by-founding-date/{foundingDate}")]
-        public async Task<ActionResult<SightDto?>> GetSightByFoundingDateAsync([FromRoute] DateOnly foundingDate)
+        public async Task<ActionResult<List<SightDto>>> GetSightsByFoundingDateAsync([FromRoute] DateTime foundingDate)
         {
-            var sight = await _sightService.GetSightByFoundingDateAsync(foundingDate);
+            var sight = await _sightService.GetSightsByFoundingDateAsync(foundingDate);
 
             if (sight is null)
             {

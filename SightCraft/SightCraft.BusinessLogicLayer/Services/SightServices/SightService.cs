@@ -34,22 +34,22 @@ namespace SightCraft.BusinessLogicLayer.Services.SightServices
 
             return mappedSight;
         }
-        public async Task<SightDto?> GetSightByTitleAsync(string title)
+        public async Task<List<SightDto>> GetSightsByTitleAsync(string title)
         {
-            var sightEntity = await _sightRepository.GetSightByTitleAsync(title);
+            var sightsEntity = await _sightRepository.GetSightsByTitleAsync(title);
 
-            var mappedSight = sightEntity?.Adapt<SightDto>();
+            var mappedSights = sightsEntity.Adapt<List<SightDto>>();
 
-            return mappedSight;
+            return mappedSights;
         }
 
-        public async Task<SightDto?> GetSightByFoundingDateAsync(DateOnly foundingDate)
+        public async Task<List<SightDto>> GetSightsByFoundingDateAsync(DateTime foundingDate)
         {
-            var sightEntity = await _sightRepository.GetSightByFoundingDateAsync(foundingDate);
+            var sightsEntity = await _sightRepository.GetSightsByFoundingDateAsync(foundingDate);
 
-            var mappedSight = sightEntity?.Adapt<SightDto>();
+            var mappedSights = sightsEntity.Adapt<List<SightDto>>();
 
-            return mappedSight;
+            return mappedSights;
         }
 
         public async Task<List<SightDto>> GetSightsByUserIdAsync(Guid userId)
