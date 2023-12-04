@@ -5,6 +5,7 @@ using SightCraft.WebAPI.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -12,6 +13,8 @@ builder.Services.AddDataAccessLayer(connectionString);
 builder.Services.AddBusinessLogicLayer();
 
 builder.Services.AddJwtAuthentication(builder.Configuration);
+
+builder.Services.AddSwagger();
 
 var app = builder.Build();
 

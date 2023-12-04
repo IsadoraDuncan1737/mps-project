@@ -13,7 +13,7 @@ namespace SightCraft.WebAPI.Configurations
                 var securityScheme = new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
+                    Type = SecuritySchemeType.Http,
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
@@ -21,19 +21,19 @@ namespace SightCraft.WebAPI.Configurations
                 };
 
                 var securityReq = new OpenApiSecurityRequirement
-            {
                 {
-                    new OpenApiSecurityScheme
                     {
-                        Reference = new OpenApiReference
+                        new OpenApiSecurityScheme
                         {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        }
-                    },
-                    new string[] { }
-                }
-            };
+                            Reference = new OpenApiReference
+                            {
+                               Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] { }
+                    }
+                };
 
                 x.AddSecurityDefinition("Bearer", securityScheme);
                 x.AddSecurityRequirement(securityReq);
