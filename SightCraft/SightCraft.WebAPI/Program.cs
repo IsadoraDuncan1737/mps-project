@@ -2,16 +2,9 @@ using FluentMigrator.Runner;
 using SightCraft.BusinessLogicLayer;
 using SightCraft.DataAccessLayer;
 using SightCraft.WebAPI.Configurations;
-using SightCraft.WebAPI.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers(options =>
-{
-    options.Filters.Add<ApiExceptionFilterAttribute>();
-});
-
-builder.Services.AddEndpointsApiExplorer();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
