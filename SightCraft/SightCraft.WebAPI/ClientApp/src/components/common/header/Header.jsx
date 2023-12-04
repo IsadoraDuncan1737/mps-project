@@ -33,7 +33,7 @@ const Header = () => {
                             {isTokenAlive ? (
                                 <>
                                     <NavLink>Ваши достопримечательности</NavLink>
-                                    <NavLink>Добавить еще!</NavLink>
+                                    <NavLink to={NavPathes.SIGHT_CREATION()}>Добавить еще!</NavLink>
                                 </>
                             ) : (
                                 false

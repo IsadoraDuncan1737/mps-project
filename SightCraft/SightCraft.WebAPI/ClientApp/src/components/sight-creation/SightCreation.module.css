@@ -1,0 +1,50 @@
+﻿.wrapper {
+  margin: 1% 10%;
+  color: #7eaa92;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 3%;
+}
+.form_control {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin-top: 3%;
+  width: 100%;
+}
+.date{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    width: 100%;
+}
+.label {
+  margin-right: 2%;
+  text-wrap: nowrap;
+}
+.helper{
+    margin: 0;
+}
+.image{
+    width: 100%;
+}
+
+.buttons {
+  margin-top: 3%;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* ////////////////////// */
+.select {
+  font-family: 'Jost';
+  height: 30px;
+  /* margin-left: 7%; */
+}

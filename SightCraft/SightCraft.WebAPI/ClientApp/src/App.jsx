@@ -12,6 +12,7 @@ import Main from './components/main/Main';
 import LogIn from './components/authorization/log-in/LogIn';
 import Registration from './components/authorization/registration/Registration';
 import SightDetailed from './components/sight-detailed/SightDetailed';
+import SightCreation from './components/sight-creation/SightCreation';
 
 function App() {
   return (
@@ -31,6 +32,10 @@ function App() {
                 <Route
                   path={`${NavPathes.SIGHTS()}/:id`}
                   element={<SightDetailed />}
+                />
+                <Route
+                  path={NavPathes.SIGHT_CREATION()}
+                  element={<SightCreation />}
                 />
               </Routes>
             </main>
