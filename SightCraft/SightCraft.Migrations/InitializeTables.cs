@@ -2,6 +2,7 @@
 
 namespace SightCraft.Migrations
 {
+    [Migration(1)]
     public class InitializeTables :AutoReversingMigration
     {
         public override void Up()
@@ -9,12 +10,13 @@ namespace SightCraft.Migrations
             Create.Table("User")
                 .WithColumn("Id").AsGuid().NotNullable().PrimaryKey()
                 .WithColumn("Login").AsString(40).NotNullable()
-                .WithColumn("PasswordHash").AsString(100).NotNullable()
+                .WithColumn("PasswordHash").AsString(128).NotNullable()
                 .WithColumn("RegistrationDate").AsDate().NotNullable();
 
             Create.Table("Sight")
                 .WithColumn("Id").AsGuid().NotNullable().PrimaryKey()
                 .WithColumn("Title").AsString(50).NotNullable()
+                .WithColumn("Summary").AsString(250).NotNullable()
                 .WithColumn("FoundingDate").AsDate().NotNullable()
                 .WithColumn("Type").AsString(20).NotNullable()
                 .WithColumn("Location").AsString(50).NotNullable()
