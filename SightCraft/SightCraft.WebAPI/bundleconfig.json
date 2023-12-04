@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "ClientApp/src/utils/navpathes.min.js",
+    "inputFiles": [
+      "ClientApp/src/utils/navpathes.js"
+    ]
+  },
+  {
+    "outputFileName": "ClientApp/src/check-token-expiration/checkTokenExpiration.min.js",
+    "inputFiles": [
+      "ClientApp/src/check-token-expiration/checkTokenExpiration.js"
+    ]
+  }
+]
