@@ -9,6 +9,8 @@ namespace SightCraft.WebAPI.Configurations
     {
         public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddAuthorization();
+
             var authenticationConfigSection = configuration.GetSection("Authentication");
 
             var authenticationSettings = new AuthenticationSettings();
@@ -30,7 +32,6 @@ namespace SightCraft.WebAPI.Configurations
                         ValidateLifetime = true
                     };
                 });
-            services.AddAuthorization();
 
             return services;
         }

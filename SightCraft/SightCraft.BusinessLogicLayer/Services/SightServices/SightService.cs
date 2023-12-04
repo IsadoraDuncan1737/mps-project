@@ -72,7 +72,7 @@ namespace SightCraft.BusinessLogicLayer.Services.SightServices
 
         public async Task<SightDto?> CreateAsync(CreateSightRequest createSightRequest)
         {
-            var existingSight = await _sightRepository.GetSightByTitleAsync(createSightRequest.Title);
+            var existingSight = await _sightRepository.GetSightsByTitleAsync(createSightRequest.Title);
 
             if (existingSight is not null)
             {
