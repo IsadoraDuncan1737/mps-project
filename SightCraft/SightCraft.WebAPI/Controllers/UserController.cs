@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SightCraft.BusinessLogicLayer.Services.UserServices;
 using SightCraft.Domain.Entities.DataAccessLayer;
+using System.Security.Claims;
 
 namespace SightCraft.WebAPI.Controllers
 {
@@ -37,6 +38,20 @@ namespace SightCraft.WebAPI.Controllers
             }
 
             return Ok(user);
+        }
+
+        [Authorize]
+        [HttpGet("current-user")]
+        public ActionResult GetCurrentUserId()
+        {
+            var currentUserId = HttpContext.User.FindFirstValue("Id");
+
+            if (currentUserId is null)
+            {
+                return NoContent();
+            }
+
+            return Ok(currentUserId);
         }
 
         [Authorize]
