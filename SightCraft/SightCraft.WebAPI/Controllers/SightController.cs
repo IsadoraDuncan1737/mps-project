@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SightCraft.BusinessLogicLayer.Services.SightServices;
 using SightCraft.Domain.Entities.BusinessLogicLayer;
 using SightCraft.Domain.Entities.WebAPI.SightRequests;
+using System.Security.Claims;
 
 namespace SightCraft.WebAPI.Controllers
 {
@@ -105,6 +106,10 @@ namespace SightCraft.WebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult> AddSightAsync([FromBody] CreateSightRequest request)
         {
+            var userId = Guid.Parse(HttpContext.User.FindFirstValue("Id"));
+
+            request.UserId = userId;
+
             var createdSight = await _sightService.CreateAsync(request);
 
             return Ok(createdSight);
