@@ -72,9 +72,9 @@ namespace SightCraft.BusinessLogicLayer.Services.SightServices
 
         public async Task<SightDto?> CreateAsync(CreateSightRequest createSightRequest)
         {
-            var existingSight = await _sightRepository.GetSightsByTitleAsync(createSightRequest.Title);
+            var existingSight = await _sightRepository.GetAllAsync(_ => _.Title == createSightRequest.Title);
 
-            if (existingSight is not null)
+            if (existingSight.Count != 0)
             {
                 throw new ValidationExceptionResult(CreateSightRequestExceptionMessages.SightWithThisTitleAlreadyExists);
             }
