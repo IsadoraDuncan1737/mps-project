@@ -21,13 +21,15 @@ export const postSightData = createAsyncThunk(
   'sightCreation/postSightData',
   async (postData) => {
     let token = checkTokenExpiration() ? sessionStorage.getItem('token') : null;
-    console.log(postData);
     if (token) {
       axios
         .post(Endpoints.SIGHT_CREATE(), postData, {
           headers: { Authorization: `Bearer ${token}` },
         })
-        .then((res) => console.log(res.data))
+        .then((res) => {
+          console.log(res.data);
+          if (res.status === 200) alert('Успешное добавление');
+        })
         .catch((e) => console.log(e));
     }
   }
@@ -47,6 +49,7 @@ export const sightCreationSlice = createSlice({
     });
     builder.addCase(postSightData.fulfilled, (state, action) => {
       state.isLoading = false;
+      state.error = null;
     });
     builder.addCase(postSightData.rejected, (state, action) => {
       state.isLoading = false;

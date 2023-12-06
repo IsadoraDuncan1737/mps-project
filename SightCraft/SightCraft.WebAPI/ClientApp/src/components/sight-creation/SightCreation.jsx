@@ -17,20 +17,24 @@ import {
   postSightData,
   selectors,
 } from './sightCreationSlice';
+import { useEffect } from 'react';
 
 const SightCreation = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    resetField,
   } = useForm();
   const sightData = useSelector(selectors.selectSightData);
   const isLoading = useSelector(selectors.selectIsLoading);
   const error = useSelector(selectors.selectError);
   let dispatch = useDispatch();
 
+  useEffect(() => {}, [isLoading, error]);
+
   function handleOnSumbit(value) {
-    // console.log(value);
+    console.log(value);
     let postData = {
       Title: value.title,
       ImageUrl: value.image,
@@ -41,12 +45,18 @@ const SightCreation = () => {
       History: value.history,
     };
     dispatch(postSightData(postData));
+    resetField('title');
+    resetField('type');
+    resetField('location');
+    resetField('summary');
+    resetField('history');
+    resetField('date');
+    resetField('image');
   }
 
   function onTypeClick(value) {
     if (!null) dispatch(changePostSightData({ ...sightData, Type: value }));
   }
-
   if (isLoading) {
     return 'loading...';
   }
