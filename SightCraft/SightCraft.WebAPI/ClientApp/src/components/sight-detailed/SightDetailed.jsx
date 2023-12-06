@@ -4,19 +4,16 @@ import { NavPathes } from '../../utils/navpathes';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  compareAuthorAndUserIds,
-  fetchAuthorById,
   fetchSightById,
   selectors,
   MOD,
   SIGHT_TYPES,
   changeModToUpdate,
-  submit,
   changeModToRead,
   changeNewSight,
   changeModToRemove,
-  remove,
-  setCurrentSightType,
+  removeSight,
+  updateSight,
 } from './sightSlice';
 import ReadMod from './read-mod/ReadMod';
 import { useForm } from 'react-hook-form';
@@ -30,7 +27,6 @@ const SightDetailed = () => {
   const newSight = useSelector(selectors.selectNewInfo);
   const author = useSelector(selectors.selectAuthorInfo);
   const mod = useSelector(selectors.selectMod);
-  const currentSightType = useSelector(selectors.selectCurrentSightType);
   const isLoading = useSelector(selectors.selectIsLoading);
   const error = useSelector(selectors.selectError);
   const dispatch = useDispatch();
@@ -42,9 +38,7 @@ const SightDetailed = () => {
 
   useEffect(() => {
     dispatch(fetchSightById(id));
-    dispatch(fetchAuthorById(id));
-    dispatch(compareAuthorAndUserIds(author.ID));
-  }, [dispatch, id, author, mod]);
+  }, [dispatch, id, isCurrentUserTheAuthor, mod]);
 
   if (isLoading) {
     return 'loading...';
@@ -55,6 +49,9 @@ const SightDetailed = () => {
   if (!sight) {
     console.log('there`s no sight info');
     return null;
+  }
+  if (!isCurrentUserTheAuthor) {
+    dispatch(changeModToRead());
   }
 
   function handleOnUpdateClick() {
@@ -68,25 +65,16 @@ const SightDetailed = () => {
     dispatch(changeModToRead());
   }
   function onSubmit(value) {
-    dispatch(
-      submit({
-        ...newSight,
-        Title: value.title,
-        Location: value.location,
-        History: value.history,
-      })
-    );
+    console.log(value);
+    dispatch(updateSight({ id, value }));
   }
   function confirmRemoving() {
-    dispatch(remove(id));
+    dispatch(removeSight(id));
     navigate(NavPathes.MAIN());
     dispatch(changeModToRead());
   }
   function handleOnChange(value) {
     dispatch(changeNewSight(value));
-  }
-  function changeSightType(value) {
-    dispatch(setCurrentSightType(value));
   }
 
   switch (mod) {

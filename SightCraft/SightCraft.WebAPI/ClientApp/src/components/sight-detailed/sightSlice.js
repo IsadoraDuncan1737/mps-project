@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import checkTokenExpiration from '../../check-token-expiration/checkTokenExpiration';
-import { sights } from '../main/data/sights'; // test
-import { users } from '../main/data/users';
-// import axios from 'axios';
+import axios from 'axios';
+import { Endpoints } from '../../utils/endpoints';
 
 export const MOD = { REMOVE: 'REMOVE', UPDATE: 'UPDATE', READ: 'READ' };
 export const SIGHT_TYPES = ['Замок', 'Памятник', 'Сооружение'];
@@ -11,9 +10,8 @@ const initialState = {
   sightData: {},
   newSightData: {},
   currentUserId: 0, //test
-  authorData: { ID: 0, Login: '' },
+  authorData: {},
   isCurrentUserTheAuthor: false,
-  currentSightType: '',
   mod: MOD.READ,
   isLoading: false,
   error: null,
@@ -22,40 +20,74 @@ const initialState = {
 export const fetchSightById = createAsyncThunk(
   'sight/fetchSightById',
   async (id) => {
-    let sight = sights.find((item) => item.ID === id);
-    return { sight: sight, newSightData: sight };
-    //
-    // const resSightData = await axios
-    //   .get('../data/sight.js')
-    //   .then((res) => console.log(res.data))
-    //   .catch((e) => console.log(e));
-    // return resSightData.data;
-  }
-);
+    const response = await fetch(Endpoints.SIGHT_GETBYID(id));
+    let data = await response.json();
+    const date = data.foundingDate.slice(0, data.foundingDate.indexOf('T'));
+    data = { ...data, foundingDate: date };
 
-export const fetchAuthorById = createAsyncThunk(
-  'sight/fetchAuthorById',
-  async (id) => {
-    let sight = sights.find((item) => item.ID === id);
-    let authorId = sight.UserID;
-    let author = users.find((item) => item.ID === authorId);
-    return author;
-  }
-);
+    let authorId = data.userId;
+    const authorResponse = await fetch(Endpoints.USER_GETBYID(authorId));
+    const authorDat = await authorResponse.json();
+    let isCurrentTheAuthor;
 
-export const compareAuthorAndUserIds = createAsyncThunk(
-  'sight/compareAuthorAndUserIds',
-  async (authorId) => {
     let token = checkTokenExpiration() ? sessionStorage.getItem('token') : null;
-    // УБРАТЬ "!" ПОСТАВИЛА ЕГО ДЛЯ ТЕСТА
-    if (!token) {
-      // Д. ПОЛУЧИТЬ ЗДЕСЬ ID ЮЗЕРА ПО ТОКЕНУ //
-      let currentUserId = 101;
-      if (Number(authorId) === Number(currentUserId)) {
-        return true;
+    if (!!token) {
+      const currUserResponse = await axios.get(Endpoints.USER_GETCURRENT(), {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      let currentUserId = currUserResponse.data;
+      console.log('author: ' + authorDat.id + '\ncurrent: ' + currentUserId);
+      if (authorDat.id === currentUserId) {
+        isCurrentTheAuthor = true;
       } else {
-        return false;
+        isCurrentTheAuthor = false;
       }
+    }
+
+    return {
+      sight: data,
+      newSightData: data,
+      authorData: { id: authorDat.id, login: authorDat.login },
+      isCurrentUserTheAuthor: isCurrentTheAuthor,
+    };
+  }
+);
+
+export const removeSight = createAsyncThunk('sight/removeSight', async (id) => {
+  let token = checkTokenExpiration() ? sessionStorage.getItem('token') : null;
+  if (!!token) {
+    console.log('removing sight with id = ' + id);
+    axios
+      .delete(Endpoints.SIGHT_DELETE(id), {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) =>
+        res.status === 200 ? alert('Удалено') : alert('Произошла ошибка')
+      )
+      .catch((e) => console.log(e));
+  }
+});
+
+export const updateSight = createAsyncThunk(
+  'sight/updateSight',
+  async ({ id, postData }) => {
+    let token = checkTokenExpiration() ? sessionStorage.getItem('token') : null;
+    if (!!token) {
+      console.log('updating sight with id = ' + id);
+      axios
+        .put(Endpoints.SIGHT_PUT(id), postData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) =>
+          res.status === 200 ? alert('Обновлено') : alert('Произошла ошибка')
+        )
+        .catch((e) => console.log(e));
     }
   }
 );
@@ -73,20 +105,8 @@ export const sightSlice = createSlice({
     changeModToRead(state, action) {
       state.mod = MOD.READ;
     },
-    remove(state, action) {
-      // нужно запрос на сервер кидать
-      console.log('removing sight with id = ' + action.payload);
-    },
-    submit(state, action) {
-      // работает через жопу, но вроде работает. нужно тестить совместно с бд
-      state.sightData = { ...action.payload };
-      state.mod = MOD.READ;
-    },
     changeNewSight(state, action) {
       state.newSightData = action.payload;
-    },
-    setCurrentSightType(state, action) {
-      state.currentSightType = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -97,32 +117,22 @@ export const sightSlice = createSlice({
       state.isLoading = false;
       state.sightData = action.payload.sight;
       state.newSightData = action.payload.newSightData;
+      state.authorData = action.payload.authorData;
+      state.isCurrentUserTheAuthor = action.payload.isCurrentUserTheAuthor;
     });
     builder.addCase(fetchSightById.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     });
 
-    builder.addCase(fetchAuthorById.pending, (state) => {
+    builder.addCase(updateSight.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(fetchAuthorById.fulfilled, (state, action) => {
+    builder.addCase(updateSight.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.authorData = action.payload;
+      state.mod = MOD.READ;
     });
-    builder.addCase(fetchAuthorById.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.error.message;
-    });
-
-    builder.addCase(compareAuthorAndUserIds.pending, (state) => {
-      state.isLoading = true;
-    });
-    builder.addCase(compareAuthorAndUserIds.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.isCurrentUserTheAuthor = action.payload;
-    });
-    builder.addCase(compareAuthorAndUserIds.rejected, (state, action) => {
+    builder.addCase(updateSight.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     });
@@ -134,10 +144,7 @@ export const {
   changeModToUpdate,
   changeModToRemove,
   changeModToRead,
-  remove,
-  submit,
   changeNewSight,
-  setCurrentSightType,
 } = sightSlice.actions;
 export const selectors = {
   selectInfo: (state) => state.sight.sightData,
@@ -145,7 +152,6 @@ export const selectors = {
   selectMod: (state) => state.sight.mod,
   selectAuthorInfo: (state) => state.sight.authorData,
   selectIsCurrentUserTheAuthor: (state) => state.sight.isCurrentUserTheAuthor,
-  selectCurrentSightType: (state) => state.sight.currentSightType,
   selectIsLoading: (state) => state.sight.isLoading,
   selectError: (state) => state.sight.error,
 };
