@@ -75,6 +75,7 @@ const SightDetailed = () => {
       Summary: value.summary,
       Title: value.title,
       Type: value.type,
+      UserId: author.id,
     };
     console.log(postData);
 
