@@ -32,7 +32,7 @@ const UpdateMod = ({
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <Grid container className={styles.container}>
           <Grid item xs={6} className={styles.image_wrapper}>
-            <img src={sight.Image} className={styles.image} alt="" />
+            <img src={sight.imageUrl} className={styles.image} alt="" />
           </Grid>
           <Grid item xs={6} className={styles.content}>
             <Typography className={styles.title}>РЕДАКТИРОВАНИЕ</Typography>
@@ -40,9 +40,9 @@ const UpdateMod = ({
               <FormControl style={{ width: '60%' }}>
                 <Input
                   type="text"
-                  defaultValue={newSight.Title}
+                  defaultValue={newSight.title}
                   onChange={(e) =>
-                    handleOnChange({ ...newSight, Title: e.target.value })
+                    handleOnChange({ ...newSight, title: e.target.value })
                   }
                   autoFocus={true}
                   inputProps={{ maxLength: 100, minLength: 3 }}
@@ -51,7 +51,7 @@ const UpdateMod = ({
               </FormControl>
 
               <Typography className={styles.user}>
-                автор: {author.Login}
+                автор: {author.login}
               </Typography>
             </Box>
             <Divider className={styles.line} />
@@ -59,14 +59,17 @@ const UpdateMod = ({
             <FormControl style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Typography className={styles.type}>Тип: </Typography>
               <Select
-                value={newSight.Type}
-                onChange={(e) =>
-                  handleOnChange({ ...newSight, Type: e.target.value })
-                }
+                value={newSight.type}
                 className={styles.select}
+                {...register('type', { required: true })}
               >
+                <MenuItem value="">---</MenuItem>
                 {SIGHT_TYPES.map((item) => (
-                  <MenuItem key={item} value={item}>
+                  <MenuItem
+                    key={item}
+                    value={item}
+                    onClick={() => handleOnChange({ ...newSight, type: item })}
+                  >
                     {item}
                   </MenuItem>
                 ))}
@@ -77,9 +80,9 @@ const UpdateMod = ({
               <Typography>Расположение:</Typography>
               <Input
                 type="text"
-                defaultValue={newSight.Location}
+                defaultValue={newSight.location}
                 onChange={(e) =>
-                  handleOnChange({ ...newSight, Location: e.target.value })
+                  handleOnChange({ ...newSight, location: e.target.value })
                 }
                 inputProps={{ maxLength: 100, minLength: 3 }}
                 {...register('location', { required: true })}
@@ -92,9 +95,9 @@ const UpdateMod = ({
                 type="text"
                 multiline={true}
                 maxRows={3}
-                defaultValue={newSight.History}
+                defaultValue={newSight.history}
                 onChange={(e) =>
-                  handleOnChange({ ...newSight, History: e.target.value })
+                  handleOnChange({ ...newSight, history: e.target.value })
                 }
                 inputProps={{ maxLength: 220, minLength: 3 }}
                 {...register('history', { required: true })}
@@ -105,11 +108,11 @@ const UpdateMod = ({
               <Typography>Дата основания:</Typography>
               <Input
                 type="text"
-                defaultValue={newSight.FoundingDate}
+                defaultValue={newSight.foundingDate}
                 onChange={(e) =>
                   handleOnChange({
                     ...newSight,
-                    FoundingDate: e.target.value,
+                    foundingDate: e.target.value,
                   })
                 }
                 placeholder="гггг-мм-дд"
@@ -125,6 +128,22 @@ const UpdateMod = ({
               <FormHelperText error={!!errors.date}>
                 {errors.date?.message}
               </FormHelperText>
+            </FormControl>
+
+            <FormControl style={{ width: '100%' }}>
+              <Typography>URL-адрес изображения:</Typography>
+              <Input
+                type="url"
+                defaultValue={newSight.imageUrl}
+                onChange={(e) =>
+                  handleOnChange({
+                    ...newSight,
+                    imageUrl: e.target.value,
+                  })
+                }
+                inputProps={{ maxLength: 220, minLength: 3 }}
+                {...register('imageUrl', { required: true })}
+              ></Input>
             </FormControl>
 
             <Box className={styles.buttons}>

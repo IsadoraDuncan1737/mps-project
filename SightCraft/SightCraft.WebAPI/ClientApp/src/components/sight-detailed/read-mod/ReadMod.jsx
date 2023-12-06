@@ -13,33 +13,25 @@ const ReadMod = ({
     <Box>
       <Grid container className={styles.container}>
         <Grid item xs={6} className={styles.image_wrapper}>
-          <img src={sight.Image} className={styles.image} alt="" />
+          <img src={sight.imageUrl} className={styles.image} alt="" />
         </Grid>
         <Grid item xs={6} className={styles.content}>
           <Box className={styles.title_wrapper}>
-            <Typography className={styles.title}>{sight.Title}</Typography>
+            <Typography className={styles.title}>{sight.title}</Typography>
             <Typography className={styles.user}>
-              автор: {author.Login}
+              автор: {author.login}
             </Typography>
           </Box>
           <Divider className={styles.line} />
-          <Typography className={styles.type}>Тип: {sight.Type}</Typography>
+          <Typography className={styles.type}>Тип: {sight.type}</Typography>
           <Typography className={styles.location}>
-            Расположение: {sight.Location}
+            Расположение: {sight.location}
           </Typography>
           <Typography className={styles.history}>
-            История: {sight.History}
+            История: {sight.history}
           </Typography>
           <Typography className={styles.date}>
-            Дата основания:{' '}
-            {!!sight.FoundingDate
-              ? sight.FoundingDate[0] === '-'
-                ? `${sight.FoundingDate.slice(
-                    1,
-                    sight.FoundingDate.length
-                  )} до н.э.`
-                : sight.FoundingDate
-              : false}
+            Дата основания: {sight.foundingDate}
           </Typography>
           {isCurrentUserTheAuthor ? (
             <Box className={styles.buttons}>
@@ -54,7 +46,7 @@ const ReadMod = ({
             <Box className={styles.link}>
               <NavLink>
                 Посмотреть другие достопримечательности пользователя{' '}
-                {author.Login}
+                {author.login}
               </NavLink>
               <img
                 src={require('../img/arrow.png')}
