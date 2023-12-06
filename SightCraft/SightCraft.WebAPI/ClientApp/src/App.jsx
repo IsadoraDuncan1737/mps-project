@@ -13,6 +13,7 @@ import LogIn from './components/authorization/log-in/LogIn';
 import Registration from './components/authorization/registration/Registration';
 import SightDetailed from './components/sight-detailed/SightDetailed';
 import SightCreation from './components/sight-creation/SightCreation';
+import UserSights from './components/user-sights/UserSights';
 
 function App() {
   return (
@@ -36,6 +37,10 @@ function App() {
                 <Route
                   path={NavPathes.SIGHT_CREATION()}
                   element={<SightCreation />}
+                />
+                <Route
+                  path={`${NavPathes.USER_SIGHTS()}/:id`}
+                  element={<UserSights />}
                 />
               </Routes>
             </main>

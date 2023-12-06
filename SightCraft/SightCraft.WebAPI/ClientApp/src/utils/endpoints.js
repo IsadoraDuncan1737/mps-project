@@ -9,5 +9,5 @@ export const Endpoints = {
   USER_GETBYID: (id) => `${BASE_URL}/user/${id}`,
   USER_GETCURRENT: () => `${BASE_URL}/user/current-user`,
   SIGHT_DELETE: (id) => `${BASE_URL}/sight/${id}`,
-  SIGHT_PUT: (id) => `${BASE_URL}/sight/${id}`,
+  SIGHT_PUT: () => `${BASE_URL}/sight`,
 };
