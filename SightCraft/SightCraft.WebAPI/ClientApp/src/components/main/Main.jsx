@@ -1,6 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material';
 import styles from './Main.module.css';
-// import { sights } from './data/sights';
 import SightCard from './sight-card/SightCard';
 import { useNavigate } from 'react-router-dom';
 import { NavPathes } from '../../utils/navpathes';
