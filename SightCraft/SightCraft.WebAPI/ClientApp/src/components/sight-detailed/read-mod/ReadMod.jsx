@@ -28,6 +28,9 @@ const ReadMod = ({
             Расположение: {sight.location}
           </Typography>
           <Typography className={styles.history}>
+            Описание: {sight.summary}
+          </Typography>
+          <Typography className={styles.history}>
             История: {sight.history}
           </Typography>
           <Typography className={styles.date}>

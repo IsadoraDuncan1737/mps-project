@@ -9,7 +9,6 @@ export const SIGHT_TYPES = ['Замок', 'Памятник', 'Сооружен�
 const initialState = {
   sightData: {},
   newSightData: {},
-  currentUserId: 0, //test
   authorData: {},
   isCurrentUserTheAuthor: false,
   mod: MOD.READ,
@@ -22,6 +21,7 @@ export const fetchSightById = createAsyncThunk(
   async (id) => {
     const response = await fetch(Endpoints.SIGHT_GETBYID(id));
     let data = await response.json();
+    // console.log(data)
     const date = data.foundingDate.slice(0, data.foundingDate.indexOf('T'));
     data = { ...data, foundingDate: date };
 
@@ -38,7 +38,7 @@ export const fetchSightById = createAsyncThunk(
         },
       });
       let currentUserId = currUserResponse.data;
-      console.log('author: ' + authorDat.id + '\ncurrent: ' + currentUserId);
+      // console.log('author: ' + authorDat.id + '\ncurrent: ' + currentUserId);
       if (authorDat.id === currentUserId) {
         isCurrentTheAuthor = true;
       } else {
@@ -74,12 +74,13 @@ export const removeSight = createAsyncThunk('sight/removeSight', async (id) => {
 
 export const updateSight = createAsyncThunk(
   'sight/updateSight',
-  async ({ id, postData }) => {
+  async (postData) => {
     let token = checkTokenExpiration() ? sessionStorage.getItem('token') : null;
+    console.log(postData);
     if (!!token) {
-      console.log('updating sight with id = ' + id);
+      console.log('updating sight with id = ' + postData.Id);
       axios
-        .put(Endpoints.SIGHT_PUT(id), postData, {
+        .put(Endpoints.SIGHT_PUT(), postData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

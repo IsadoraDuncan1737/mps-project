@@ -90,6 +90,21 @@ const UpdateMod = ({
             </FormControl>
 
             <FormControl style={{ width: '100%' }}>
+              <Typography>Описание:</Typography>
+              <Input
+                type="text"
+                multiline={true}
+                maxRows={3}
+                defaultValue={newSight.summary}
+                onChange={(e) =>
+                  handleOnChange({ ...newSight, summary: e.target.value })
+                }
+                inputProps={{ maxLength: 220, minLength: 3 }}
+                {...register('summary', { required: true })}
+              ></Input>
+            </FormControl>
+
+            <FormControl style={{ width: '100%' }}>
               <Typography>История:</Typography>
               <Input
                 type="text"
@@ -117,7 +132,7 @@ const UpdateMod = ({
                 }
                 placeholder="гггг-мм-дд"
                 inputProps={{ maxLength: 15, minLength: 6 }}
-                {...register('date', {
+                {...register('foundingDate', {
                   required: 'Введите дату в формате гггг-мм-дд',
                   pattern: {
                     value: /-?\d{4}-\d{2}-\d{2}/,
@@ -125,8 +140,8 @@ const UpdateMod = ({
                   },
                 })}
               ></Input>
-              <FormHelperText error={!!errors.date}>
-                {errors.date?.message}
+              <FormHelperText error={!!errors.foundingDate}>
+                {errors.foundingDate?.message}
               </FormHelperText>
             </FormControl>
 

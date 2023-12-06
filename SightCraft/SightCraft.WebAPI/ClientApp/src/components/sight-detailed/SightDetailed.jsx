@@ -65,8 +65,20 @@ const SightDetailed = () => {
     dispatch(changeModToRead());
   }
   function onSubmit(value) {
-    console.log(value);
-    dispatch(updateSight({ id, value }));
+    console.log('value');
+    let postData = {
+      Id: id,
+      History: value.history,
+      FoundingDate: value.foundingDate + 'T00:00:00',
+      ImageUrl: value.imageUrl,
+      Location: value.location,
+      Summary: value.summary,
+      Title: value.title,
+      Type: value.type,
+    };
+    console.log(postData);
+
+    dispatch(updateSight(postData));
   }
   function confirmRemoving() {
     dispatch(removeSight(id));
