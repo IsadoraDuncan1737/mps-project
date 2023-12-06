@@ -1,12 +1,33 @@
 import { Box, Grid, Typography } from '@mui/material';
 import styles from './Main.module.css';
-import { sights } from './data/sights';
+// import { sights } from './data/sights';
 import SightCard from './sight-card/SightCard';
 import { useNavigate } from 'react-router-dom';
 import { NavPathes } from '../../utils/navpathes';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectors, fetchSights } from './mainSlice';
+import { useEffect } from 'react';
 
 const Main = () => {
+  const sights = useSelector(selectors.selectSights);
+  const isLoading = useSelector(selectors.selectIsLoading);
+  const error = useSelector(selectors.selectError);
   let navigate = useNavigate();
+  let dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchSights());
+  }, [dispatch]);
+
+  if (isLoading) {
+    return 'loading...';
+  }
+  if (error) {
+    return error;
+  }
+  if (!sights) {
+    return <Typography>Данных нет!</Typography>;
+  }
 
   function handleOnClick(id) {
     navigate(`${NavPathes.SIGHTS()}/${id}`);
@@ -21,16 +42,16 @@ const Main = () => {
       <Grid container spacing={5}>
         {sights.map((item) => (
           <SightCard
-            key={item.ID}
-            id={item.ID}
-            title={item.Title}
-            location={item.Location}
-            image={item.Image}
-            summary={item.Summary}
-            date={item.FoundingDate}
-            type={item.Type}
-            userId={item.UserID}
-            onClick={(id)=>handleOnClick(id)}
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            location={item.location}
+            image={item.imageUrl}
+            summary={item.summary}
+            date={item.foundingDate}
+            type={item.type}
+            userId={item.userID}
+            onClick={(id) => handleOnClick(id)}
           />
         ))}
       </Grid>
