@@ -4,7 +4,13 @@ import axios from 'axios';
 import { Endpoints } from '../../utils/endpoints';
 
 export const MOD = { REMOVE: 'REMOVE', UPDATE: 'UPDATE', READ: 'READ' };
-export const SIGHT_TYPES = ['Замок', 'Памятник', 'Сооружение'];
+export const SIGHT_TYPES = [
+  'Замок',
+  'Памятник',
+  'Сооружение',
+  'Крепость',
+  'Другое',
+];
 
 const initialState = {
   sightData: {},
@@ -89,6 +95,7 @@ export const updateSight = createAsyncThunk(
           res.status === 200 ? alert('Обновлено') : alert('Произошла ошибка')
         )
         .catch((e) => console.log(e));
+      return postData;
     }
   }
 );
@@ -131,6 +138,7 @@ export const sightSlice = createSlice({
     });
     builder.addCase(updateSight.fulfilled, (state, action) => {
       state.isLoading = false;
+      state.sightData = action.payload;
       state.mod = MOD.READ;
     });
     builder.addCase(updateSight.rejected, (state, action) => {
