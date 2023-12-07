@@ -1,19 +1,24 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentUserId, selectors } from './userSightsSlice';
+import { fetchData, selectors } from './userSightsSlice';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { NavPathes } from '../../utils/navpathes';
 import styles from '../main/Main.module.css';
+import SightCard from '../main/sight-card/SightCard';
 
 const UserSights = () => {
   const { id } = useParams();
+  const isCurrentUserTheAuthor = useSelector(
+    selectors.selectIsCurrentUserTheAuthor
+  );
+  const sights = useSelector(selectors.selectSights);
+  const author = useSelector(selectors.selectAuthorData);
   let dispatch = useDispatch();
+  let navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      dispatch(getCurrentUserId());
-    };
-    fetchData();
+    dispatch(fetchData(id));
   }, [dispatch]);
 
   const isLoading = useSelector(selectors.selectIsLoading);
@@ -26,15 +31,21 @@ const UserSights = () => {
     return error;
   }
 
-  //   function handleOnClick(id) {
-  //     navigate(`${NavPathes.SIGHTS()}/${id}`);
-  //   }
+  function handleOnClick(id) {
+    navigate(`${NavPathes.SIGHTS()}/${id}`);
+  }
   return (
     <Box className={styles.wrapper}>
-      <Typography className={styles.page_title}>
-        Достпримечательности пользователя {id}
-      </Typography>
-      {/* <Grid container spacing={5}>
+      {isCurrentUserTheAuthor ? (
+        <Typography className={styles.user_sights_page__title}>
+          Ваши достопримечательности
+        </Typography>
+      ) : (
+        <Typography className={styles.user_sights_page__title}>
+          Достпримечательности пользователя {author.login}
+        </Typography>
+      )}
+      <Grid container spacing={5}>
         {sights.map((item) => (
           <SightCard
             key={item.id}
@@ -49,7 +60,7 @@ const UserSights = () => {
             onClick={(id) => handleOnClick(id)}
           />
         ))}
-      </Grid> */}
+      </Grid>
     </Box>
   );
 };

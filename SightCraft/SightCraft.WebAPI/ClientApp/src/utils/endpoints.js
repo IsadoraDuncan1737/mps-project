@@ -6,6 +6,7 @@ export const Endpoints = {
   SIGHT_CREATE: () => `${BASE_URL}/sight`,
   SIGHTS_GETALL: () => `${BASE_URL}/sight`,
   SIGHT_GETBYID: (id) => `${BASE_URL}/sight/${id}`,
+  SIGHT_GETBYUSERID: (id) => `${BASE_URL}/sight/by-user-id/${id}`,
   USER_GETBYID: (id) => `${BASE_URL}/user/${id}`,
   USER_GETCURRENT: () => `${BASE_URL}/user/current-user`,
   SIGHT_DELETE: (id) => `${BASE_URL}/sight/${id}`,
