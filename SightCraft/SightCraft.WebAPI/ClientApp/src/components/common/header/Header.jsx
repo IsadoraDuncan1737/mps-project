@@ -19,7 +19,6 @@ const Header = () => {
 
   function onExitClick() {
     dispatch(exit());
-    navigate(NavPathes.MAIN());
   }
 
   return (
@@ -49,7 +48,9 @@ const Header = () => {
           <Grid item xs={3}>
             <Box className={styles.auth_links}>
               {isTokenAlive ? (
-                <NavLink onClick={onExitClick}>Выход</NavLink>
+                <NavLink to={NavPathes.MAIN()} onClick={onExitClick}>
+                  Выход
+                </NavLink>
               ) : (
                 <>
                   <NavLink to={NavPathes.LOG_IN()}>Вход</NavLink>
