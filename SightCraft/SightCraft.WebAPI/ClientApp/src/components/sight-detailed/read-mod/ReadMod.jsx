@@ -1,5 +1,6 @@
 import { Box, Typography, Grid, Divider, Button } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import { NavPathes } from '../../../utils/navpathes';
 
 const ReadMod = ({
   author,
@@ -47,7 +48,7 @@ const ReadMod = ({
             </Box>
           ) : (
             <Box className={styles.link}>
-              <NavLink>
+              <NavLink to={`${NavPathes.USER_SIGHTS()}/${author.id}`}>
                 Посмотреть другие достопримечательности пользователя{' '}
                 {author.login}
               </NavLink>
