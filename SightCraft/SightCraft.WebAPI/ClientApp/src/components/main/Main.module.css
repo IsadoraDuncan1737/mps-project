@@ -6,6 +6,13 @@
   font-size: 1.3rem;
   text-align: center;
   color: #7eaa92;
+  margin-bottom: 1%;
+}
+.user_sights_page__title {
+  font-weight: 600;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #7eaa92;
   margin-bottom: 3%;
 }
 .card {
@@ -37,4 +44,20 @@
   font-size: 1.5rem;
   text-align: center;
   margin-bottom: 2%;
+}
+
+.select_wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: end;
+  margin-bottom: 3%;
+  color: #7eaa92;
+}
+
+.select {
+  font-family: 'Jost';
+  height: 30px;
+  color: #7eaa92;
+  margin-left: 3%;
 }

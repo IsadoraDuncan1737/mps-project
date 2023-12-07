@@ -3,6 +3,7 @@ import { Endpoints } from '../../utils/endpoints';
 
 const initialState = {
   sights: [],
+  selectedType: '',
   isLoading: false,
   error: null,
 };
@@ -26,7 +27,11 @@ export const fetchSights = createAsyncThunk('main/fetchSights', async () => {
 export const mainSlice = createSlice({
   name: 'main',
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedType(state, action) {
+      state.selectedType = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchSights.pending, (state) => {
       state.isLoading = true;
@@ -42,9 +47,10 @@ export const mainSlice = createSlice({
   },
 });
 
-// export const {  } = mainSlice.actions;
+export const { setSelectedType } = mainSlice.actions;
 export const selectors = {
   selectSights: (state) => state.main.sights,
+  selectSelectedType: (state) => state.main.selectedType,
   selectIsLoading: (state) => state.main.isLoading,
   selectError: (state) => state.main.error,
 };
